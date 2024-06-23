@@ -23,7 +23,7 @@ export const register = async (req, res) => {
             firstName,
             lastName,
             email,
-            passwordHash,
+            password: passwordHash,
             picturePath,
             friends,
             location,
@@ -42,6 +42,7 @@ export const login = async(req, res) => {
     try {
         const {email, password} = req.body;
 
+        
         const user = await User.findOne({email});
         if (!user) return res.status(400).json({message: 'User does not exists!!'});
 
